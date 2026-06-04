@@ -26,10 +26,16 @@ class Program
         robotVacuum.Brand = "Xiaomi";
         robotVacuum.BatteryLevel = 150;
 
+        CoffeeMachine coffeeMachine = new CoffeeMachine();
+        coffeeMachine.Brand = "Nespresso";
+        coffeeMachine.CupsPerBrew = 2;
+
+
         devices.Add(washer);
         devices.Add(refrigerator);
         devices.Add(oven);
         devices.Add(robotVacuum);
+        devices.Add(coffeeMachine);
 
         RunMorningRoutine(devices);
         Console.WriteLine();
@@ -65,7 +71,12 @@ class Program
                     robotVacuum.StartCleaning();
                     robotVacuum.StopCleaning();
                 }
-            }
+               else if (device is CoffeeMachine coffeeMachine)
+               {
+                coffeeMachine.StartBrewing();
+                coffeeMachine.StopBrewing();
+               }
+        }
         }
     
     static void ReportAllEnergy(List<object> devices)
@@ -93,7 +104,11 @@ class Program
                 {
                     robotVacuum.PrintCleaningEnergy();
                 }
-            }
+                else if (device is CoffeeMachine coffeeMachine)
+                {
+                coffeeMachine.PrintBrewingEnergy();
+                }
+        }
         }
     }
 
@@ -107,7 +122,7 @@ class Program
 // Jag måste lägga till ny kod för att hantera CoffeeMachine.
 
 //3. Vilka metoder måste du ändra om du lägger till CoffeeMachine?
-//Jag måste ändra både RunMorningRoutine() och ReportAllEnergy() för att hantera CoffeeMachine.
+//Jag måste ändra Main(), RunMorningRoutine() och ReportAllEnergy().
 
 //4. Vad är problemet med att listan är List<object>?
 // Jag måste använda typkontroll och casting för att komma åt metoderna.
