@@ -5,112 +5,35 @@ class Program
 {
     static void Main()
     {
-        List<object> devices = new List<object>();
+        List<Appliance> devices = new List<Appliance>();
         // TODO:
-        // Skapa minst fyra objekt:
-        // Washer, Refrigerator, Oven och RobotVacuum.
-        // Lägg till dem i listan devices.
-        Washer washer = new Washer();
-        washer.Brand = "LG";
-        washer.CapacityKg = 8;
+        devices.Add(new Washer("LG", "Laundry Room", 8));
+        devices.Add(new Refrigerator("Samsung", "Kitchen", 4));
+        devices.Add(new Oven("Electrolux", "Kitchen", 250));
+        devices.Add(new RobotVacuum("Xiaomi", "Living Room", 100));
+        devices.Add(new CoffeeMachine("Nespresso", "Kitchen", 2));
 
-        Refrigerator refrigerator = new Refrigerator();
-        refrigerator.Brand = "Samsung";
-        refrigerator.Temperature = 4;
-
-        Oven oven = new Oven();
-        oven.Brand = "Electrolux";
-        oven.MaxTemperature = 250;
-
-        RobotVacuum robotVacuum = new RobotVacuum();
-        robotVacuum.Brand = "Xiaomi";
-        robotVacuum.BatteryLevel = 150;
-
-        CoffeeMachine coffeeMachine = new CoffeeMachine();
-        coffeeMachine.Brand = "Nespresso";
-        coffeeMachine.CupsPerBrew = 2;
-
-
-        devices.Add(washer);
-        devices.Add(refrigerator);
-        devices.Add(oven);
-        devices.Add(robotVacuum);
-        devices.Add(coffeeMachine);
-
-        RunMorningRoutine(devices);
-        Console.WriteLine();
-        ReportAllEnergy(devices);
-    }
-    static void RunMorningRoutine(List<object> devices)
-    {
-        foreach (object device in devices)
+        foreach (Appliance device in devices)
         {
-            // TODO:
-            // 1. Kontrollera vilken typ device är.
-            // 2. Casta till rätt typ.
-            // 3. Anropa rätt startmetod.
-            // 4. Anropa rätt stoppmetod.
+            // Skriv ut info.
+            // Starta apparaten.
+            // Skriv ut energiförbrukning.
+            // Stäng av apparaten.
 
-                if (device is Washer washer)
-                {
-                    washer.StartWash();
-                    washer.StopWash();
-                }
-                else if (device is Refrigerator refrigerator)
-                {
-                    refrigerator.StartCooling();
-                    refrigerator.StopCooling();
-                }
-                else if (device is Oven oven)
-                {
-                    oven.StartHeating();
-                    oven.StopHeating();
-                }
-                else if (device is RobotVacuum robotVacuum)
-                {
-                    robotVacuum.StartCleaning();
-                    robotVacuum.StopCleaning();
-                }
-               else if (device is CoffeeMachine coffeeMachine)
-               {
-                coffeeMachine.StartBrewing();
-                coffeeMachine.StopBrewing();
-               }
+            Console.WriteLine("INFO:" + device.GetInfo());
+
+            device.TurnOn();
+
+            Console.WriteLine("Daily energy usage: " + device.GetDailyEnergyUsage() + " kWh");
+
+            device.TurnOff();
+
+            Console.WriteLine();
         }
-        }
-    
-    static void ReportAllEnergy(List<object> devices)
-    {
-        foreach (object device in devices)
-        {
-            // TODO:
-            // 1. Kontrollera vilken typ device är.
-            // 2. Casta till rätt typ.
-            // 3. Anropa rätt energimetod.
-           
-                if (device is Washer washer)
-                {
-                    washer.PrintWashEnergy();
-                }
-                else if (device is Refrigerator refrigerator)
-                {
-                    refrigerator.PrintCoolingEnergy();
-                }
-                else if (device is Oven oven)
-                {
-                    oven.PrintHeatingEnergy();
-                }
-                else if (device is RobotVacuum robotVacuum)
-                {
-                    robotVacuum.PrintCleaningEnergy();
-                }
-                else if (device is CoffeeMachine coffeeMachine)
-                {
-                coffeeMachine.PrintBrewingEnergy();
-                }
-        }
-        }
+
     }
+    }
+
 
 //Reflektionsfrågor efter Del 1
 
@@ -130,3 +53,17 @@ class Program
 //5. Vad händer om du råkar glömma en apparattyp i ReportAllEnergy()?
 //Då skrivs inte energiförbrukningen ut för den apparaten.
 
+
+
+// Frågor efter Del 5
+
+// 1.Varför fungerar device.TurnOn() trots att device har typen Appliance?
+// Eftersom TurnOn() är virtual i Appliance och override i child classes.
+// Polymorfism gör att rätt metod körs automatiskt.
+
+// 2. Vilken metod körs om objektet egentligen är en RobotVacuum?
+// RobotVacuums override av TurnOn() körs.
+
+// 3. Vad blev bättre jämfört med List<object>?
+// Vi behöver inte använda if, is eller casting.
+// Samma kod fungerar för alla apparater.

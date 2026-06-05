@@ -20,7 +20,7 @@ namespace SmartHome
         {
             // TODO:
             // Returnera en generell text om apparaten.
-            // Exempel: "LG in Laundry room"
+
             return Brand + " in " + Room;
         }
         public virtual void TurnOn()

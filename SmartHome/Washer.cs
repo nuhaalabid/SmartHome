@@ -4,24 +4,37 @@ using System.Text;
 
 namespace SmartHome
 {
-    public class Washer
+    public class Washer :Appliance
     {
-        public string Brand { get; set; }
+
         public double CapacityKg { get; set; }
 
-        public void StartWash()
+        public Washer(string brand, string room, double capacityKg)
+           : base(brand, room)
         {
-            Console.WriteLine(Brand + " washer starts washing.");
+            CapacityKg = capacityKg;
         }
 
-        public void StopWash()
+        public override string GetInfo()
         {
+            return Brand + " washer in " + Room;
+        }
+
+        public override void TurnOn()
+        {
+            IsOn = true;
+            Console.WriteLine(Brand + " washer starts a washing program.");
+        }
+
+        public override void TurnOff()
+        {
+            IsOn = false;
             Console.WriteLine(Brand + " washer stops washing.");
         }
 
-        public void PrintWashEnergy()
+        public override double GetDailyEnergyUsage()
         {
-            Console.WriteLine(Brand + " washer uses 1.2 kWh per wash.");
+            return 1.2;
         }
 
     }
