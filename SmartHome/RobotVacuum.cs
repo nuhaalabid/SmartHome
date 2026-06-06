@@ -4,15 +4,25 @@ using System.Text;
 
 namespace SmartHome
 {
-    public class RobotVacuum :Appliance
+    public class RobotVacuum :Appliance ,ISchedulable
     {
      
         public int BatteryLevel { get; set; }
+
+        public DateTime NextRun { get; set; }
 
         public RobotVacuum(string brand, string room, int batteryLevel)
              : base(brand, room)
         {
             BatteryLevel = batteryLevel;
+        }
+
+        public void Schedule(DateTime time)
+        {
+            NextRun = time;
+
+            Console.WriteLine(
+                Brand + " robot vacuum scheduled for " + NextRun);
         }
 
         public override string GetInfo()

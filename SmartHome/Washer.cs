@@ -4,15 +4,24 @@ using System.Text;
 
 namespace SmartHome
 {
-    public class Washer :Appliance
+    public class Washer : Appliance, ISchedulable
     {
 
         public double CapacityKg { get; set; }
+        public DateTime NextRun { get; set; }
 
         public Washer(string brand, string room, double capacityKg)
            : base(brand, room)
         {
             CapacityKg = capacityKg;
+        }
+
+        public void Schedule(DateTime time)
+        {
+            NextRun = time;
+
+            Console.WriteLine(
+                Brand + " washer scheduled for " + NextRun);
         }
 
         public override string GetInfo()

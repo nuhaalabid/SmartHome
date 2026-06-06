@@ -4,15 +4,23 @@ using System.Text;
 
 namespace SmartHome
 {
-    public class CoffeeMachine :Appliance
+    public class CoffeeMachine :Appliance , ISchedulable
     {
         
         public int CupsPerBrew { get; set; }
-
+        public DateTime NextRun { get; set; }
         public CoffeeMachine(string brand, string room, int cupsPerBrew)
             : base(brand, room)
         {
             CupsPerBrew = cupsPerBrew;
+        }
+
+        public void Schedule(DateTime time)
+        {
+            NextRun = time;
+
+            Console.WriteLine(
+                Brand + " coffee machine scheduled for " + NextRun);
         }
 
         public override string GetInfo()
