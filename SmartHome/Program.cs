@@ -13,6 +13,7 @@ class Program
         controller.AddDevice(new Oven("Electrolux", "Kitchen", 250));
         controller.AddDevice(new RobotVacuum("Xiaomi", "Living Room", 100));
         controller.AddDevice(new CoffeeMachine("Nespresso", "Kitchen", 2));
+        controller.AddDevice(new AirConditioner("Daikin", "Bedroom", 22));
 
         controller.PrintStatusReport();
         Console.WriteLine();
