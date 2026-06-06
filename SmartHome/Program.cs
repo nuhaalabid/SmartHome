@@ -5,34 +5,33 @@ class Program
 {
     static void Main()
     {
-        List<Appliance> devices = new List<Appliance>();
+        SmartHomeController controller = new SmartHomeController();
+
         // TODO:
-        devices.Add(new Washer("LG", "Laundry Room", 8));
-        devices.Add(new Refrigerator("Samsung", "Kitchen", 4));
-        devices.Add(new Oven("Electrolux", "Kitchen", 250));
-        devices.Add(new RobotVacuum("Xiaomi", "Living Room", 100));
-        devices.Add(new CoffeeMachine("Nespresso", "Kitchen", 2));
+        controller.AddDevice(new Washer("LG", "Laundry Room", 8));
+        controller.AddDevice(new Refrigerator("Samsung", "Kitchen", 4));
+        controller.AddDevice(new Oven("Electrolux", "Kitchen", 250));
+        controller.AddDevice(new RobotVacuum("Xiaomi", "Living Room", 100));
+        controller.AddDevice(new CoffeeMachine("Nespresso", "Kitchen", 2));
 
-        foreach (Appliance device in devices)
-        {
-            // Skriv ut info.
-            // Starta apparaten.
-            // Skriv ut energiförbrukning.
-            // Stäng av apparaten.
+        controller.PrintStatusReport();
+        Console.WriteLine();
 
-            Console.WriteLine("INFO:" + device.GetInfo());
+        controller.TurnOnAll();
+        Console.WriteLine();
 
-            device.TurnOn();
+        double totalEnergy = controller.GetTotalDailyEnergyUsage();
 
-            Console.WriteLine("Daily energy usage: " + device.GetDailyEnergyUsage() + " kWh");
+        Console.WriteLine("Total daily energy usage: " + totalEnergy + " kWh");
 
-            device.TurnOff();
+        Console.WriteLine();
 
-            Console.WriteLine();
-        }
-
+        controller.TurnOffAll();
     }
-    }
+
+
+}
+    
 
 
 //Reflektionsfrågor efter Del 1
