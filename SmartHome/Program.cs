@@ -15,6 +15,10 @@ class Program
         controller.AddDevice(new CoffeeMachine("Nespresso", "Kitchen", 2));
         controller.AddDevice(new AirConditioner("Daikin", "Bedroom", 22));
 
+        controller.ScheduleAllSchedulableDevices(DateTime.Now.AddHours(2));
+
+        Console.WriteLine();
+
         controller.PrintStatusReport();
         Console.WriteLine();
 

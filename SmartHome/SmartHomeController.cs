@@ -14,6 +14,22 @@ namespace SmartHome
             _devices.Add(device);
         }
 
+        // Varför kompilerar inte detta?
+        // Appliance har ingen metod som heter Schedule().
+        // Bara klasser som implementerar ISchedulable har Schedule().
+        // Därför måste vi kontrollera om objektet är ISchedulable
+        // och casta till interfacet innan vi anropar Schedule().
+        public void ScheduleAllSchedulableDevices(DateTime time)
+        {
+            foreach (Appliance device in _devices)
+            {
+                if (device is ISchedulable schedulable)
+                {
+                    schedulable.Schedule(time);
+                }
+            }
+        }
+
         public void TurnOnAll()
         {
             // TODO:
