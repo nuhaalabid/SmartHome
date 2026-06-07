@@ -17,6 +17,13 @@ class Program
 
         controller.ScheduleAllSchedulableDevices(DateTime.Now.AddHours(2));
 
+        SmartLamp lamp1 = new SmartLamp("IKEA", "Hallway", 80);
+
+        Appliance lamp2 = lamp1;
+
+        lamp1.TurnOn();
+        lamp2.TurnOn();
+
         Console.WriteLine();
 
         controller.PrintStatusReport();
@@ -101,3 +108,22 @@ class Program
 // C# föreslog att använda new eftersom metoden döljer basklassens metod.
 
 
+// Del 11
+
+// 1. Blir utskriften samma?
+// Nej, utskriften blir olika.
+
+// 2. Vilken metod körs när variabeln har typen SmartLamp?
+// SmartLamp.TurnOn() körs.
+
+// 3. Vilken metod körs när variabeln har typen Appliance?
+// Appliance.TurnOn() körs.
+
+// 4. Varför är detta farligt eller förvirrande?
+// Samma objekt kan köra olika metoder beroende på variabelns typ.
+
+// 5. Vad händer om du byter new till override?
+//  körs SmartLamp.TurnOn() även när variabeln har typen Appliance.
+
+// new döljer metoden från basklassen.
+// override gör att den nya metoden används istället för basklassens metod.
