@@ -36,7 +36,7 @@ class Program
 
 
 }
-    
+
 
 
 //Reflektionsfrågor efter Del 1
@@ -71,3 +71,22 @@ class Program
 // 3. Vad blev bättre jämfört med List<object>?
 // Vi behöver inte använda if, is eller casting.
 // Samma kod fungerar för alla apparater.
+
+
+// Frågor efter Del 9
+
+// 1. Varför kan vi inte anropa Schedule() direkt på en variabel av typen Appliance?
+// Appliance har ingen metod som heter Schedule().
+
+// 2. Varför fungerar det efter att vi castar till ISchedulable?
+// Efter casting får vi tillgång till metoderna i ISchedulable, inklusive Schedule().
+
+// 3. Vad betyder det att RobotVacuum både är en Appliance och en ISchedulable?
+// RobotVacuum är en apparat och kan samtidigt schemaläggas.
+
+// 4. Varför ska inte Schedule() ligga direkt i Appliance?
+// Alla apparater kan inte schemaläggas, till exempel Refrigerator och Oven.
+
+// 5. Vad är skillnaden mellan arv och interface i det här exemplet?
+// Arv beskriver vad objektet är (Appliance).
+// Interface beskriver vad objektet kan göra (ISchedulable).
