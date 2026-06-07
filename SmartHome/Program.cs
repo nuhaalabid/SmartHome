@@ -88,5 +88,16 @@ class Program
 // Alla apparater kan inte schemaläggas, till exempel Refrigerator och Oven.
 
 // 5. Vad är skillnaden mellan arv och interface i det här exemplet?
-// Arv beskriver vad objektet är (Appliance).
-// Interface beskriver vad objektet kan göra (ISchedulable).
+// Arv beskriver vad objektet är Appliance.
+// Interface beskriver vad objektet kan göra ISchedulable.
+
+
+//Del 10 test A:
+// Kompilatorn ger fel eftersom TurnOn() i Appliance inte längre är virtual.
+// En metod måste vara virtual,abstract eller override för att kunna override i child classes.
+
+// Test B:
+// Jag fick en varning när jag tog bort override.
+// C# föreslog att använda new eftersom metoden döljer basklassens metod.
+
+
