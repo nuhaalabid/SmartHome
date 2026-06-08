@@ -20,12 +20,13 @@ namespace SmartHome
             return Brand + " oven in " + Room;
         }
 
-        public override void TurnOn()
+        public sealed override void TurnOn()
         {
+            //sealed gör att child classes inte kan override:a TurnOn() igen.
             IsOn = true;
             Console.WriteLine(Brand + " oven starts preheating.");
         }
-
+      
         public override void TurnOff()
         {
             IsOn = false;

@@ -127,3 +127,18 @@ class Program
 
 // new döljer metoden från basklassen.
 // override gör att den nya metoden används istället för basklassens metod.
+
+
+// Del 12
+
+// 1. Vad säger kompilatorn?
+// Kompilatorn säger att TurnOn() inte kan override:a eftersom den är sealed.
+
+// 2. Varför får PizzaOven inte override:a TurnOn()?
+// Sealed stoppar child classes från att override:a metoden igen.
+
+// 3. När kan det vara rimligt att använda sealed override?
+// När man vill låsa ett beteende så att det inte ändras längre.
+
+// 4. Vad kan PizzaOven fortfarande göra i stället?
+// Den kan använda TurnOn() från Oven och override:a andra metoder som inte är sealed.
